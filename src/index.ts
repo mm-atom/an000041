@@ -1,28 +1,16 @@
 import { IncomingMessage } from 'http';
 import { Form } from 'multiparty';
 import anylogger from 'anylogger';
-import ff from 'ffprobe';
 import config from '@mmstudio/config';
 
 const logger = anylogger('getfiles');
 
 const maxFilesSize = config.max_file_size as number;
 
-export interface IMetaData {
-	originialfilename?: string
-	'content-type'?: string
-	video?: ff.FFProbeStream
-	audio?: ff.FFProbeStream
-	screenshot?: string
-	duration?: number
-}
-
 export interface IFile {
-	id?: string
-	name: string
-	path: string
-	type: string
-	meta?: IMetaData
+	name: string;
+	path: string;
+	type: string;
 }
 
 type ParsedFiles = Record<
