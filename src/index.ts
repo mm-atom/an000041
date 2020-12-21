@@ -42,7 +42,7 @@ export default function parsefiles(req: IncomingMessage) {
 						const [file] = files[name];
 						logger.debug('file parsed', file);
 						return {
-							name: file.fieldName,
+							name: file.originalFilename || file.fieldName,
 							path: file.path,
 							type: file.headers['content-type'] || 'application/octet-stream',
 						};
