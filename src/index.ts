@@ -3,7 +3,7 @@ import { Form } from 'multiparty';
 import anylogger from 'anylogger';
 import config from '@mmstudio/config';
 
-const logger = anylogger('getfiles');
+const logger = anylogger('@mmstudio/an000041');
 
 const maxFilesSize = config.max_file_size as number;
 
