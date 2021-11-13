@@ -17,5 +17,5 @@ test('parse file', async (t) => {
 		});
 	})();
 	server.close();
-	t.is(file.name, name);
+	t.is(file.name, 'test.js');
 });
