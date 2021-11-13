@@ -32,7 +32,7 @@ export default function parsefiles<T = Record<string, string[]>>(req: IncomingMe
 		const form = new Form({
 			maxFilesSize,
 		});
-		form.parse(req, (err, fields, files: ParsedFiles) => {
+		form.parse(req, (err, fields: T, files: ParsedFiles) => {
 			if (err) {
 				logger.error(err);
 				rej(err);
