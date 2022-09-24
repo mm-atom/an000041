@@ -1,10 +1,15 @@
 const test = require('ava');
 const http = require('http');
+const { loadEnvConfig } = require('@next/env');
 const an40 = require('@mmstudio/an000040').default;
 
 const { default: a } = require('../dist/index');
 const port = 3000;
 const name = 'mm';
+
+test.before(() => {
+	loadEnvConfig('./');
+});
 
 test('parse file', async (t) => {
 	let server;

@@ -1,11 +1,8 @@
 import { IncomingMessage } from 'http';
 import { Form } from 'multiparty';
 import anylogger from 'anylogger';
-import config from '@mmstudio/config';
 
 const logger = anylogger('@mmstudio/an000041');
-
-const maxFilesSize = config.max_file_size as number;
 
 export interface IFile<T> {
 	name: string;
@@ -30,7 +27,7 @@ type ParsedFiles = Record<
 export default function parsefiles<T = Record<string, string[]>>(req: IncomingMessage) {
 	return new Promise<IFile<T>[]>((res, rej) => {
 		const form = new Form({
-			maxFilesSize,
+			maxFilesSize: getMaxSize(),
 		});
 		form.parse(req, (err, fields: T, files: ParsedFiles) => {
 			if (err) {
@@ -53,4 +50,8 @@ export default function parsefiles<T = Record<string, string[]>>(req: IncomingMe
 			}
 		});
 	});
+}
+
+function getMaxSize() {
+	return parseInt(process.env.MAX_FILE_SIZE!, 10);
 }
